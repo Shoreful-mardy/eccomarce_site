@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -145,6 +147,44 @@ class AdminController extends Controller
             'alert-type' =>'success'
         );
         return redirect()->route('inactive.vendor')->with($notification);
+    }//End Method
+
+    public function AllAdmin(){
+
+        $admin = User::where('role','admin')->where('status','active')->get();
+        return view('backend.admin.all_admin',compact('admin'));
+
+    }//End Method
+
+
+    public function AddAdmin(){
+
+        $roles = Role::all();
+        return view('backend.admin.add_admin',compact('roles'));
+
+    }//End Method
+
+    public function StoreAdmin(Request $request){
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
+
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+        $notification = array(
+            'message' => 'Admin User Created Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('all.admin')->with($notification);
+
     }//End Method
 
     

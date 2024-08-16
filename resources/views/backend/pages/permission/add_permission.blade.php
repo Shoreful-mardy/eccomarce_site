@@ -58,6 +58,7 @@
                                             <option value="subcategory">Subcategory</option>
                                             <option value="product">Product</option>
                                             <option value="slider">Slider</option>
+                                            <option value="banner">Banner</option>
                                             <option value="ads">Ads</option>
                                             <option value="coupon">Coupon</option>
                                             <option value="area">Area</option>
