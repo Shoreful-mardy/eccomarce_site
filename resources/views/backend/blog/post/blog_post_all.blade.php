@@ -14,11 +14,14 @@
 							</ol>
 						</nav>
 					</div>
+					
+					@if(Auth::user()->can('addblog.post'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.blog.post') }}" class="btn btn-primary">Add  Blog Post</a>
 						</div>
 					</div>
+					@endif
 				</div>
 				<!--end breadcrumb-->
 		
@@ -47,8 +50,12 @@
 										<td>{{ $item->post_title}}</td>
 
 										<td>
+											@if(Auth::user()->can('editblog.post'))
                                             <a href="{{route('edit.blog.post',$item->id)}}" class="btn btn-info">Edit</a>
+                                            @endif
+                                            @if(Auth::user()->can('deleteblog.post'))
                                             <a href="{{route('delete.blog.post',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                            @endif
                                         </td>
 									</tr>
 

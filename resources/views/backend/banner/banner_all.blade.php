@@ -14,11 +14,13 @@
 							</ol>
 						</nav>
 					</div>
+					@if(Auth::user()->can('add.banner'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.banner') }}" class="btn btn-primary">Add Banner</a>
 						</div>
 					</div>
+					@endif
 				</div>
 				<!--end breadcrumb-->
 		
@@ -46,8 +48,12 @@
 										<td>{{ $item->banner_url}}</td>
 										<td><img src="{{ asset($item->banner_image) }}" style="width:70px;  height:40px;"></td>
 										<td>
+											@if(Auth::user()->can('edit.banner'))
                                             <a href="{{route('edit.banner',$item->id)}}" class="btn btn-info">Edit</a>
+                                            @endif
+                                            @if(Auth::user()->can('delete.banner'))
                                             <a href="{{route('delete.banner',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                            @endif
                                         </td>
 									</tr>
 

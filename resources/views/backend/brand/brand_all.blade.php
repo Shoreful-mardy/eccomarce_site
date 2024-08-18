@@ -46,9 +46,9 @@
 										<td>{{ $item->brand_name}}</td>
 										<td><img src="{{ asset($item->brand_image) }}" style="width:70px;  height:40px;"></td>
 										<td>
-											@if(Auth::user()->can('brand.add'))
+											@if(Auth::user()->can('brand.edit'))
                                             <a href="{{route('edit.brand',$item->id)}}" class="btn btn-info">Edit</a>@endif
-                                            @if(Auth::user()->can('brand.add'))
+                                            @if(Auth::user()->can('brand.delete'))
                                             <a href="{{route('delete.brand',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>@endif
                                         </td>
 									</tr>

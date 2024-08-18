@@ -14,11 +14,13 @@
 							</ol>
 						</nav>
 					</div>
+					@if(Auth::user()->can('add.slider'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.slider') }}" class="btn btn-primary">Add Slider</a>
 						</div>
 					</div>
+					@endif
 				</div>
 				<!--end breadcrumb-->
 		
@@ -46,8 +48,12 @@
 										<td>{{ $item->short_title}}</td>
 										<td><img src="{{ asset($item->slider_image) }}" style="width:70px;  height:40px;"></td>
 										<td>
+											@if(Auth::user()->can('edit.slider'))
                                             <a href="{{route('edit.slider',$item->id)}}" class="btn btn-info">Edit</a>
+                                            @endif
+                                            @if(Auth::user()->can('delete.slider'))
                                             <a href="{{route('delete.slider',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                            @endif
                                         </td>
 									</tr>
 

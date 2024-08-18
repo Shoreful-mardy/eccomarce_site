@@ -88,7 +88,9 @@
 											<span class="badge rounded-pill bg-success">Approved</span>
 										</td>
 										<td>
+											@if(Auth::user()->can('action.review'))
                                             <a href="{{route('review.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                            @endif
                                         </td>
 									</tr>
 

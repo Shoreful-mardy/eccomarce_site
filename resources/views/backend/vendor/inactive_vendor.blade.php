@@ -49,7 +49,9 @@
 										<td>{{ $item->email}}</td>
 										<td><span class="btn btn-secondary">{{ $item->status}}</span></td>
 										<td>
+											@if(Auth::user()->can('vendor.action'))
                                             <a href="{{route('inactive.vendor.details',$item->id)}}" class="btn btn-info">Vendor Details</a>
+                                            @endif
                                         </td>
 									</tr>
 

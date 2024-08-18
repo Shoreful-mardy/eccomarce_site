@@ -14,11 +14,14 @@
 							</ol>
 						</nav>
 					</div>
+					@if(Auth::user()->can('add.product'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.product') }}" class="btn btn-primary">Add Product</a>
 						</div>
 					</div>
+					@endif
+						
 				</div>
 				<!--end breadcrumb-->
 				<hr/>
@@ -68,16 +71,18 @@
 											<span class="badge rounded-pill bg-danger">Inactive</span>
 										@endif</td>
 										<td>
+											@if(Auth::user()->can('edit.product'))
                                             <a href="{{route('edit.product',$item->id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-
+                                            @endif
+                                            @if(Auth::user()->can('delete.product'))
                                             <a href="{{route('delete.product',$item->id)}}" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
-
-											<a href="{{route('edit.category',$item->id)}}" class="btn btn-warning" title="Details Page"><i class="fa fa-eye"></i></a>
-
+                                            @endif
+                                            @if(Auth::user()->can('active.product'))
 											@if ($item->status == 1)
 											<a href="{{route('product.inactive',$item->id)}}" class="btn btn-primary" title="Inactive"><i class="fa-solid fa-thumbs-down"></i></a>
 											@else
 											<a href="{{route('product.active',$item->id)}}" class="btn btn-primary" title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
+											@endif
 											@endif
                                         </td>
 									</tr>

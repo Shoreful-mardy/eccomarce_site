@@ -14,11 +14,14 @@
 							</ol>
 						</nav>
 					</div>
+					
+					@if(Auth::user()->can('add.subcategory'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.subcategory') }}" class="btn btn-primary">Add Sub Category</a>
 						</div>
 					</div>
+					@endif
 				</div>
 				<!--end breadcrumb-->
 		
@@ -44,8 +47,12 @@
 										<td>{{ $item['category']['category_name']}}</td>
 										<td>{{ $item->subcategory_name}}</td>
 										<td>
+											@if(Auth::user()->can('edit.subcategory'))
                                             <a href="{{route('edit.subcategory',$item->id)}}" class="btn btn-info">Edit</a>
+                                            @endif
+                                            @if(Auth::user()->can('delete.subcategory'))
                                             <a href="{{route('delete.subcategory',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                            @endif
                                         </td>
 									</tr>
 

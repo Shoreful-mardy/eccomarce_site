@@ -88,7 +88,9 @@
 											<span class="badge rounded-pill bg-danger">Pending</span>
 										</td>
 										<td>
+											@if(Auth::user()->can('action.review'))
                                             <a href="{{route('admin.approve.review',$item->id)}}" class="btn btn-info">Approve</a>
+                                            @endif
                                         </td>
 									</tr>
 
