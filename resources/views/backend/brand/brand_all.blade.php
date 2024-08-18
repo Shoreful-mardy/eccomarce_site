@@ -14,11 +14,13 @@
 							</ol>
 						</nav>
 					</div>
+					@if(Auth::user()->can('brand.add'))
 					<div class="ms-auto">
 						<div class="btn-group">
                         <a href="{{ route('add.brand') }}" class="btn btn-primary">Add Brand</a>
 						</div>
 					</div>
+					@endif
 				</div>
 				<!--end breadcrumb-->
 		
@@ -44,8 +46,10 @@
 										<td>{{ $item->brand_name}}</td>
 										<td><img src="{{ asset($item->brand_image) }}" style="width:70px;  height:40px;"></td>
 										<td>
-                                            <a href="{{route('edit.brand',$item->id)}}" class="btn btn-info">Edit</a>
-                                            <a href="{{route('delete.brand',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+											@if(Auth::user()->can('brand.add'))
+                                            <a href="{{route('edit.brand',$item->id)}}" class="btn btn-info">Edit</a>@endif
+                                            @if(Auth::user()->can('brand.add'))
+                                            <a href="{{route('delete.brand',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>@endif
                                         </td>
 									</tr>
 
